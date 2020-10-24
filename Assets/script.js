@@ -26,6 +26,9 @@ function initMap(response) {
   });
 }
 
+// iufhohvdo
+var = today
+
 
 
 // drop down for price
