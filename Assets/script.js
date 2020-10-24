@@ -1,38 +1,17 @@
 
-// var APIKey = "LhZIQJpQlMA7ZaFACizYRcGvrarAHYuqwiABNw-" +
-//     "_45EaMV5KKeQlHpZNjyt8tSBZBcH4uJjhPwIztopHhIH-Kf5MsszDEobMtFMvhTA3zhXZp44bf7PljOR-3HaPX3Yx";
+// var inputStorage = $("#textarea1").localStorage.setItem("location", location.val());
+var priceSelect = $("#priceChoice").val();
 
-// var queryURL = "https://api.yelp.com/v3/businesses/search" + APIKey;
+console.log(priceSelect);
+// function initMap(response) {
+//     console.log(response);
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: { lat: -34.397, lng: 150.644 },
+//     zoom: 8,
+//   });
+// }
+// // drop down for price
 
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-// })
-//     .then(function (response) {
-
-//         console.log(queryURL);
-
-//         console.log(response);
-//     });
-
-
-var map;
-
-function initMap(response) {
-    console.log(response);
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-}
-
-// iufhohvdo
-var = today
-
-
-
-// drop down for price
-
-  $(document).ready(function(){
-    $('select').formSelect();
-  });
+//   $(document).ready(function(){
+//     $('select').formSelect();
+//   });
