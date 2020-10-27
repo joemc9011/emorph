@@ -8,19 +8,19 @@ var lnglat = "36.7783, 119.4179";
  var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+ query +"&key=" + APIKey +"&location=" +lnglat +"&radius=" +radius;
 console.log(queryURL);
 
-// $.ajax({ 
-//   url: "https://limitless-tor-79246.herokuapp.com/cors",
-//   method: "POST",
-//   data: {
-//     url: "",
-//     method: "",
-//     key: "DB4868A0E1958DD298798EF1086835163AB3ED38D909D7A97BF3611FF87CD4DB"
+$.ajax({ 
+  url: "https://limitless-tor-79246.herokuapp.com/cors",
+  method: "POST",
+  data: {
+    url: "",
+    method: "",
+    key: "DB4868A0E1958DD298798EF1086835163AB3ED38D909D7A97BF3611FF87CD4DB"
   
-//   },
-//    error: function (req, status, error) {
-//     console.log(error);
-//   }
-// });
+  },
+   error: function (req, status, error) {
+    console.log(error);
+  }
+});
 
 
 
