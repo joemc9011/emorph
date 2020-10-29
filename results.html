@@ -1,11 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <title>Google API </title>
 </head>
+
 <body>
-    
+  <!-- Retrieved data will be dumped here -->
+  <h1 class="response"></h1>
+  <h1 class="response2"></h1>
+  <h1 class="response3"></h1>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // This is our API key
+    // var APIKey = "166a433c57516f51dfab1f7edaed8413";
+
+    // // Here we are building the URL we need to query the database
+    // var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
+    //   "q=Bujumbura,Burundi&appid=" + APIKey;
+
+    // // Here we run our AJAX call to the OpenWeatherMap API
+    // $.ajax({
+    //   url: queryURL,
+    //   method: "GET"
+    // })
+    //   .then(function(response) {
+    //       console.log(response);
+    //       var data = JSON.stringify(response.base)
+    //       $("#response").append(data)
+
+    //   });
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      var crd = pos.coords;
+
+      var APIKey = "AIzaSyBhD3UUFezfTS4WlRIYhGzEwO_blOC2DYs";
+      var query = "restaurants";
+      var radius = "0"
+      // var lnglat = crd;
+      var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "&key=" + APIKey + "&location=" + crd;
+      console.log(queryURL);
+      $.ajax({
+        url: "https://limitless-tor-79246.herokuapp.com/cors",
+        method: "POST",
+        data: {
+          url: queryURL,
+          method: "",
+          key: "DB4868A0E1958DD298798EF1086835163AB3ED38D909D7A97BF3611FF87CD4DB"
+        }
+      })
+        .then(function (response) {
+          console.log(response);
+          var rating = JSON.stringify(response.results[1].rating)
+          var business = JSON.stringify(response.results[0].business_status);
+          var name = JSON.stringify(response.results[0].name);
+          var hours = JSON.stringify(response.results[0].opening_hours)
+          $(".response").append(rating, "<br>", business, "<br>", name, "<br>", hours);
+          $(".response").append(response.results[0].photos[0].html_attributions[0])
+          // $("#response2").text(business);
+          // $("#response3").text(business)
+
+
+        });
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    navigator.geolocation.getCurrentPosition(success, error, options)
+  </script>
 </body>
+
 </html>
