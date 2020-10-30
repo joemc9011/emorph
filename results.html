@@ -8,9 +8,12 @@
 
 <body>
   <!-- Retrieved data will be dumped here -->
-  <h1 class="response"></h1>
-  <h1 class="response2"></h1>
-  <h1 class="response3"></h1>
+  <button id="button"> IM HUNGRY </button>
+
+  <p class="response"></p>
+  <p class="response2"></p>
+  <p class="response3"></p>
+  <p class="response4"></p>
 
 
 
@@ -36,54 +39,100 @@
     //       $("#response").append(data)
 
     //   });
-    var options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
+    $("#button").on("click", function (event) {
 
-    function success(pos) {
-      var crd = pos.coords;
+      var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
 
-      var APIKey = "AIzaSyBhD3UUFezfTS4WlRIYhGzEwO_blOC2DYs";
-      var query = "restaurants";
-      var radius = "0"
-      // var lnglat = crd;
-      var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "&key=" + APIKey + "&location=" + crd;
-      console.log(queryURL);
-      $.ajax({
-        url: "https://limitless-tor-79246.herokuapp.com/cors",
-        method: "POST",
-        data: {
-          url: queryURL,
-          method: "",
-          key: "DB4868A0E1958DD298798EF1086835163AB3ED38D909D7A97BF3611FF87CD4DB"
-        }
-      })
-        .then(function (response) {
-          console.log(response);
-          var rating = JSON.stringify(response.results[1].rating)
-          var business = JSON.stringify(response.results[0].business_status);
-          var name = JSON.stringify(response.results[0].name);
-          var hours = JSON.stringify(response.results[0].opening_hours)
-          $(".response").append(rating, "<br>", business, "<br>", name, "<br>", hours);
-          $(".response").append(response.results[0].photos[0].html_attributions[0])
-          // $("#response2").text(business);
-          // $("#response3").text(business)
+      function success(pos) {
+        var crd = pos.coords;
+        console.log(crd);
+        console.log(pos)
+
+        var APIKey = "AIzaSyBhD3UUFezfTS4WlRIYhGzEwO_blOC2DYs";
+        var query = "restaurants";
+        var radius = "0"
+        // var lnglat = crd;
+        var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "&key=" + APIKey + "&location=" + crd.latitude + "," + crd.longitude + "&radius=1000";
+        console.log(queryURL);
+        console.log(crd);
+        $.ajax({
+          url: "https://limitless-tor-79246.herokuapp.com/cors",
+          method: "POST",
+          data: {
+            url: queryURL,
+            method: "",
+            key: "DB4868A0E1958DD298798EF1086835163AB3ED38D909D7A97BF3611FF87CD4DB"
+          }
+        })
+          .then(function (response) {
+            console.log(queryURL)
+            console.log(response)
+
+            for (var i = 0; i < 20; i++) {
+              var pricelevel = response.results[i].price_level
+              var name = response.results[i].name
+              var rating = response.results[i].rating
+              var newDiv = $("<p>")
+
+              if (response.results[i].price_level === 2) {
+                console.log(response.results[i].price_level)
+                console.log(response.results[i].name)
+                $(".response").append(name, "<p", "PRICE: " + pricelevel, "<p>", "RATING: " + rating)
+              }
+              else if (response.results[i].price_level === 3) {
+                console.log(response.results[i].price_level)
+                console.log(response.results[i].name)
+                $(".response2").append(name, "<br>", "PRICE: " + pricelevel, "<br>", "RATING: " + rating)
+              }
+              else if (response.results[i].price_level === 1) {
+                console.log(response.results[i].price_level)
+                console.log(response.results[i].name)
+                $(".response3").append(name, "<br>", "PRICE: " + pricelevel, "<br>", "RATING: " + rating)
+              }
+              else if (response.results[i].rating > 4) {
+                console.log(response.results[i].price_level)
+                console.log(response.results[i].name)
+                $(".response4").append(name, "<br>", "PRICE: " + pricelevel, "<br>", "RATING: " + rating)
+              }
+
+              else if (response.results[i].price_level === "undefined") {
+                $(".response").append("");
+              }
 
 
-        });
 
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
-    }
 
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-    navigator.geolocation.getCurrentPosition(success, error, options)
+
+
+            }
+            // console.log(response);
+            // var rating = JSON.stringify(response.results[1].rating)
+            // var business = JSON.stringify(response.results[0].business_status);
+            // var name = JSON.stringify(response.results[0].name);
+            // var hours = JSON.stringify(response.results[0].opening_hours)
+            // $(".response").append(rating, "<br>", business, "<br>", name, "<br>", hours);
+            // $(".response").append(response.results[0].photos[0].html_attributions[0])
+            // $("#response2").text(business);
+            // $("#response3").text(business)
+
+
+          });
+
+        console.log('Your current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+      }
+
+      function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      }
+      navigator.geolocation.getCurrentPosition(success, error, options)
+    })
   </script>
 </body>
 
