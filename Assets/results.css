@@ -1,5 +1,5 @@
 body {
-    background-image: url(../Pictures/brickwall.png);
+    background-image: url(../Pictures/brickwall-neon.png);
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
@@ -16,9 +16,9 @@ response {
     border-radius:  0em 2px 1em 1em;
     padding-left: 2em;
     border: 1px;
-    border-style: solid;
     position: relative;
     font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+    text-align: center;
     
     
 
@@ -33,9 +33,9 @@ response {
     border-radius:  0em 2px 1em 1em;
     padding-left: 2em;
     border: 1px;
-    border-style: solid;
     position: relative;
     font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+    text-align: center;
     
     
 
@@ -52,6 +52,7 @@ response {
     border: 1px;
     position: relative;
     font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+    text-align: center;
     
     
 
@@ -68,6 +69,7 @@ response {
     border: 1px;
     position: relative;
     font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+    text-align: center;
     
     
 
@@ -84,6 +86,7 @@ response {
     border: 1px;
     position: relative;
     font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+    text-align: center;
     
     
 
