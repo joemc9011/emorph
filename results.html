@@ -3,27 +3,20 @@
 
 <head>
   <meta charset="utf-8">
-  <title> Hole in the Wall API </title>
+  <title> Hole in the Wall </title>
 </head>
 
 <body>
-  <!-- Retrieved data will be dumped here -->
-  <button id="button"> IM HUNGRY </button>
-
+  <p id="weather"></p>
   <p id="response"></p>
   <p id="response2"></p>
   <p id="response3"></p>
   <p id="response4"></p>
   <p id="response5"></p>
 
-
-
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
 
-    $("#button").on("click", function (event) {
 
       var options = {
         enableHighAccuracy: true,
@@ -66,29 +59,25 @@
                 // console.log(response.results[i].name)
                 $("#response2").append(name, "<div>", "Price Level: " + pricelevel, "<div>", "Rating: " + rating, "<hr>")
               }
-              // else if (response.results[i].price_level === 3 && response.results[i].rating > 4) {
-              //   // console.log(response.results[i].price_level)
-              //   // console.log(response.results[i].name)
-              //   $("#response3").append(name, "<div>", "Price Level: " + pricelevel, "<div>", "Rating: " + rating, "<hr>")
-              // }
-              // else if (response.results[i].price_level === 1 && response.results[i].rating > 4) {
-              //   // console.log(response.results[i].price_level)
-              //   // console.log(response.results[i].name)
-              //   $("#response1").append(name, "<div>", "Price Level: " + pricelevel, "<div>", "Rating: " + rating, "<hr>")
-              // }
-              // else if (response.results[i].rating > 4) {
-              //   // console.log(response.results[i].price_level)
-              //   // console.log(response.results[i].name)
-              //   $("#response4").append(name, "<div>", "Price Level: " + pricelevel, "<div>", "Rating: " + rating, "<hr>", hours)
-              // }
 
-              // else if (hours == true) {
-              //   // console.log(response.results[i].price_level)
-              //   // console.log(response.results[i].name)
-              //   $("#response5").append("NOW OPEN!")
-              // }
+            }
+          })
 
-          }})
+        var key = "87b65817cc4024afcebb9b66c77f4ff3"
+        var crd = pos.coords;
+        var lat = crd.latitude;
+        var long = crd.longitude;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=" + key;
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function (response) {
+          var tempF = (response.main.temp - 273.15) * 1.80 + 32
+          var cloudy = (response.weather[0].description)
+          $("#weather").append("Temp: " + tempF.toFixed(0) + "F" + "<br>" + "''" + cloudy + "''" + "<hr>");
+          console.log(response);
+        });
 
         console.log('Your current position is:');
         console.log(`Latitude : ${crd.latitude}`);
@@ -99,8 +88,7 @@
       function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       }
-      navigator.geolocation.getCurrentPosition(success, error, options)
-    })
+      navigator.geolocation.getCurrentPositcdion(success, error, options)
   </script>
 </body>
 
