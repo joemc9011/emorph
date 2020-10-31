@@ -19,6 +19,8 @@ body {
     position: relative;
     font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
     text-align: center;
+    
+}
 
 #response {
     background: none;
