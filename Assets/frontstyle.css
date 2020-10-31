@@ -1,0 +1,71 @@
+#imageone {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    max-width: 80%;
+    max-height: 80%;
+    text-align: center;
+
+}
+
+body {
+    background-image: url(../Pictures/brickwall.png);
+    background-position: center center;
+    background-attachment: fixed;
+    max-width: auto;
+    max-height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color:black;
+    display: block;
+   
+}
+
+#imagetwo {
+    margin-top: 25%;
+    max-width: 50%;
+    margin-right: auto;
+   margin-left: auto;
+   display: block;
+
+
+
+
+}
+
+#choice {
+
+    outline: none;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: lightseagreen;
+    color: white;
+    margin-top: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+
+ button{
+    display: block ;
+    margin-left: auto;
+    margin-right: auto;
+    outline: none;
+    font-size: 200px;
+    background-color: teal;
+    border: none;
+    color: wheat;
+    margin-top: 2%;
+    border-radius: 5%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow';
+   
+}
