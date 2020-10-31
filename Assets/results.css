@@ -7,7 +7,7 @@ body {
     background-color:black;
 }
 
-response {
+#response {
     background: none;
     color: #fff;
     margin: 0 0 30px 0;
@@ -75,7 +75,7 @@ response {
 
 }
 
- .response5 {
+ #response5 {
     background: none;
     color: #fff;
     margin: 0 0 30px 0;
